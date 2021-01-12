@@ -10,9 +10,15 @@ public class Main {
 
 
 
-        double[] ActVolt = {.58, 282, 4.9, 50};
+//        double[] ActVolt = {.66, 418, 7, 65};
+//        double[] ActVolt = {.57, 301, 6.5, 55};
+        double[] ActVolt = {.55, 309, 5.1, 55};
+
         //{radius, omega, F tesnion, theta)
-        double[] uncert = {.05,25,.3,10};
+//        double[] uncert = {.05,15,.1,7.5};
+//        double[] uncert = {.05,15,.1,5};
+        double[] uncert = {.05,15,.1,5};
+
         // uncert of {radius, omega, F tesnion, theta)
 
 
@@ -39,6 +45,8 @@ public class Main {
         double massMin = 99999;
         double Fmax = -9999;
         double Fmin = 99999;
+        double Fmax2 = -9999;
+        double Fmin2 = 99999;
         for (int j = 0; j < 10; j++) {
 //            System.out.println(massMax);
 //            System.out.println(massMin);
@@ -53,6 +61,8 @@ public class Main {
             System.out.println(massMin);
             System.out.println(Fmax);
             System.out.println(Fmin);
+                            System.out.println(Fmax2);
+                            System.out.println(Fmin2);
                             for (int o = 0; o < 10; o++) {
                                 for (int p = 0; p < 10; p++) {
                                     for (int q = 0; q < 10; q++) {
@@ -72,6 +82,15 @@ public class Main {
                                         else if(Fnet < Fmin) {
                                             Fmin = Fnet;
                                         }
+                                        double Fnet2 = Math.sin(Math.toRadians(ActVolts[3][o])) * ActVolts[2][n];
+                                        if(Fnet2 > Fmax2) {
+                                            Fmax2 = Fnet;
+                                        }
+                                        else if(Fnet2 < Fmin2) {
+                                            Fmin2 = Fnet2;
+                                        }
+
+
 //                                            System.out.println(ActVolts[1][k]);
 //                                            System.out.println(ActVolts[0][j]);
 //                                            System.out.println(ActVolts[2][l]);
@@ -101,12 +120,25 @@ public class Main {
                         }
 
                     }
+        double out = Math.pow(Math.toRadians(ActVolt[1]), 2) * (((Math.cos(Math.toRadians(ActVolt[3]))) * ActVolt[2])/9.8) * ActVolt[0];
+        double out2 = Math.sin(Math.toRadians(ActVolt[3])) * ActVolt[2];
+        double mass = ((Math.cos(Math.toRadians(ActVolt[3]))) * ActVolt[2])/9.8;
         System.out.println("FINAL MAX MASS " + massMax);
         System.out.println("FINAL MIN MASS " + + massMin);
         System.out.println("FINAL MAX FNET " + Fmax);
         System.out.println("FINAL MIN FNEt " + + Fmin);
-
-                }
+        System.out.println("FINAL MAX FNET2 " + Fmax2);
+        System.out.println("FINAL MIN FNEt2 " + + Fmin2);
+        System.out.println("Final FNET " + out);
+        System.out.println("Up Add " + (Fmax - out));
+        System.out.println("Down Add " + (out - Fmin));
+        System.out.println("Final FNET2 " + out2);
+        System.out.println("Up Add2 " + (Fmax2 - out2));
+        System.out.println("Down Add2 " + (out2 - Fmin2));
+        System.out.println("Final Mass " + mass);
+        System.out.println("Up Add2 " + (massMax - mass));
+        System.out.println("Down Add2 " + (mass - massMin));
+    }
 
             }
 
