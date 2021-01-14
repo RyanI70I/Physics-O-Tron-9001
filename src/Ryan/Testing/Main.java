@@ -10,14 +10,14 @@ public class Main {
 
 
 
-//        double[] ActVolt = {.66, 418, 7, 65};
+        double[] ActVolt = {.66, 418, 7, 65};
 //        double[] ActVolt = {.57, 301, 6.5, 55};
-        double[] ActVolt = {.55, 309, 5.1, 55};
+//        double[] ActVolt = {.55, 309, 5.1, 55};
 
         //{radius, omega, F tesnion, theta)
-//        double[] uncert = {.05,15,.1,7.5};
+        double[] uncert = {.05,15,.1,7.5};
 //        double[] uncert = {.05,15,.1,5};
-        double[] uncert = {.05,15,.1,5};
+//        double[] uncert = {.05,15,.1,5};
 
         // uncert of {radius, omega, F tesnion, theta)
 
